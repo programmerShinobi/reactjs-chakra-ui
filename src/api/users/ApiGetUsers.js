@@ -1,27 +1,22 @@
 import Config from "config/Config";
 import axios from "axios";
 
-const ApiLogin = {
-    login: async (userEmail, userPassword) => {
+const ApiGetUsers = {
+    getUsers: async () => {
         let option = {
-            url: Config.base_url + '/auth/login',
-            method: 'POST',
+            url: Config.base_url + '/users',
+            method: 'GET',
             headers: {
                 "Content-Type": "application/json"
-            },
-            data: {
-                userEmail: userEmail,
-                userPassword: userPassword
             }
         }
-
         try {
             let result = await axios(option);
-            return result.data;
+            return result
         } catch (error) {
             return error.toString();
         }
     }
 }
 
-export default ApiLogin;
+export default ApiGetUsers;

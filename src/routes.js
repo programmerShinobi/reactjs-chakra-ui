@@ -25,6 +25,7 @@ import Profile from "views/Dashboard/Profile.js";
 import SignIn from "views/Pages/SignIn.js";
 import SignUp from "views/Pages/SignUp.js";
 import Employees from "views/Employees/Employees";
+import UsersParent from "views/Users/UsersParent";
 // import EmployeeParent from "latihan-component/ParentChildEmployee/EmployeeParent";
 
 import {
@@ -38,6 +39,14 @@ import {
 } from "components/Icons/Icons";
 
 var dashRoutes = [
+  {
+    path: "/users",
+    name: "Users",
+    rtlName: "shinobi",
+    icon: <StatsIcon color='inherit' />,
+    component: UsersParent,
+    layout: "/admin",
+  },
   // {
   //   path: "/EmployeeParent",
   //   name: "Employees",
