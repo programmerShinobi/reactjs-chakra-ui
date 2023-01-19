@@ -14,7 +14,7 @@ const UsersParent = () => {
                 if (!result.data.results) {
                     throw new Error("Bad Gateway API Users")
                 }
-                setUsers(result.data.results);
+                // setUsers(result.data.results);
                 console.info(result.data.results);
             })
             .catch((err) => {
