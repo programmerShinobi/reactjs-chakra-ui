@@ -1,3 +1,14 @@
+# ReactJS with Cakra UI From Code X Academy
+## Learn ReactJS with Cakra UI
+
+This template should help get you started developing with ReactJS.
+
+## How to use the files
+Each lesson has it's own branch. To see the code for a lesson, select that lesson from the branch drop-down.
+
+## Reference
+All the course files for the ReactJS with Cakra UI tutorial on site [Code X Academy](https://www.codex.academy/).
+
 # [Vision UI Free Chakra](https://demos.creative-tim.com/vision-ui-dashboard-chakra) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https://www.creative-tim.com/product/vision-ui-dashboard-chakra&text=Check%20Vision%20UI%20Dashboard%20made%20by%20@simmmple_web%20and%20@CreativeTim%20#webdesign%20#dashboard%20#react)
 
 ![version](https://img.shields.io/badge/version-1.0.0-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/vision-ui-dashboard-chakra.svg?maxAge=2592000)](https://github.com/creativetimofficial/vision-ui-dashboard-chakra/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/vision-ui-dashboard-chakra.svg?maxAge=2592000)](https://github.com/creativetimofficial/vision-ui-dashboard-chakra/issues?q=is%3Aissue+is%3Aclosed)
