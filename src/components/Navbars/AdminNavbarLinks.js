@@ -85,7 +85,9 @@ export default function HeaderLinks(props) {
           borderRadius='inherit'
         />
       </InputGroup>
-      <NavLink to='/auth/signin'>
+
+      {/* <NavLink to="/auth/signin"> */}
+      <NavLink to="#">
         <Button
           ms='0px'
           px='0px'

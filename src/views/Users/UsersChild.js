@@ -14,8 +14,8 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 
-const UsersChild = ({ columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm }) => {
-    // const { columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm } = props;
+const UsersChild = (props) => {
+    const { columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm } = props;
 
     return (
         <Flex direction='column' pt={{ base: "120px", md: "75px" }}>

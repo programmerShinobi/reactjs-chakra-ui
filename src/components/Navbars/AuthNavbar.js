@@ -91,20 +91,21 @@ export default function AuthNavbar(props) {
           ms='0px'
           me='0px'
           px='0px'
-          me={{ sm: "2px", md: "16px" }}
+          // me={{ sm: "2px", md: "16px" }}
           color={navbarIcon}
           variant='transparent-with-icon'
           leftIcon={<HomeIcon color={navbarIcon} w='12px' h='12px' me='0px' />}>
           <Text>Dashboard</Text>
         </Button>
       </NavLink>
-      <NavLink to='/admin/profile'>
+      {/* <NavLink to='/admin/profile'> */}
+      <NavLink to='#'>
         <Button
           fontSize='sm'
           ms='0px'
           me='0px'
           px='0px'
-          me={{ sm: "2px", md: "16px" }}
+          // me={{ sm: "2px", md: "16px" }}
           color={navbarIcon}
           variant='transparent-with-icon'
           leftIcon={
@@ -119,7 +120,7 @@ export default function AuthNavbar(props) {
           ms='0px'
           me='0px'
           px='0px'
-          me={{ sm: "2px", md: "16px" }}
+          // me={{ sm: "2px", md: "16px" }}
           color={navbarIcon}
           variant='transparent-with-icon'
           leftIcon={
@@ -128,7 +129,9 @@ export default function AuthNavbar(props) {
           <Text>Sign Up</Text>
         </Button>
       </NavLink>
-      <NavLink to='/auth/signin'>
+
+      {/* <NavLink to='/auth/signin'> */}
+      <NavLink to='#'>
         <Button
           fontSize='sm'
           ms='0px'

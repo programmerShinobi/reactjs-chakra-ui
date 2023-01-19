@@ -18,7 +18,7 @@ const UsersParent = () => {
                 console.info(result.data.results);
             })
             .catch((err) => {
-                setError(err.toString());
+                setError(err);
             });
     }, []);
 

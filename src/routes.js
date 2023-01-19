@@ -102,13 +102,15 @@ var dashRoutes = [
     state: "pageCollapse",
     views: [
       {
-        path: "/profile",
+        // path: "/profile",
+        path: "#",
         name: "Profile",
         rtlName: "shinobi",
         icon: <PersonIcon color='inherit' />,
         secondaryNavbar: true,
         component: Profile,
-        layout: "/admin",
+        // layout: "/admin",
+        layout: "#",
       },
       {
         path: "/sigin",
