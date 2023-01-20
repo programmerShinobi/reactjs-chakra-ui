@@ -62,7 +62,7 @@ function SignIn() {
     try {
       const result = await ApiLogin.login(userEmail, userPassword);
       if (result.message != "Login successfully") {
-        return setStatus("Warning")
+        setStatus("Warning")
       } else {
         localStorage.setItem('token', result.token);
         setStatus("Success");
