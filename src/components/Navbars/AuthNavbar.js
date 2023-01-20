@@ -85,7 +85,8 @@ export default function AuthNavbar(props) {
   );
   var linksAuth = (
     <HStack display={{ sm: "none", lg: "flex" }}>
-      <NavLink to='/admin/dashboard'>
+
+      {/* <NavLink to='/admin/dashboard'>
         <Button
           fontSize='sm'
           ms='0px'
@@ -97,9 +98,10 @@ export default function AuthNavbar(props) {
           leftIcon={<HomeIcon color={navbarIcon} w='12px' h='12px' me='0px' />}>
           <Text>Dashboard</Text>
         </Button>
-      </NavLink>
+      </NavLink> */}
+
       {/* <NavLink to='/admin/profile'> */}
-      <NavLink to='#'>
+      {/* <NavLink to='#'>
         <Button
           fontSize='sm'
           ms='0px'
@@ -112,7 +114,8 @@ export default function AuthNavbar(props) {
           }>
           <Text>Profile</Text>
         </Button>
-      </NavLink>
+      </NavLink> */}
+
       <NavLink to='/auth/signup'>
         <Button
           fontSize='sm'
@@ -177,7 +180,7 @@ export default function AuthNavbar(props) {
           />
         </Box>
         {linksAuth}
-        <Link href='https://creative-tim.com/product/vision-ui-dashboard-chakra'>
+        {/* <Link href='https://creative-tim.com/product/vision-ui-dashboard-chakra'>
           <Button
             fontSize='xs'
             variant='brand'
@@ -189,7 +192,7 @@ export default function AuthNavbar(props) {
             }}>
             Free Download
           </Button>
-        </Link>
+        </Link> */}
       </Flex>
     </Flex>
   );

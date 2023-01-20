@@ -42,6 +42,7 @@ export default function HeaderLinks(props) {
     mainText = "white";
   }
   const settingsRef = React.useRef();
+
   return (
     <Flex
       pe={{ sm: "0px", md: "16px" }}
@@ -88,6 +89,34 @@ export default function HeaderLinks(props) {
 
       <NavLink to="/auth/signin">
         <Button
+          onClick={() => {
+            localStorage.removeItem('token');
+          }}
+          ms='0px'
+          px='0px'
+          me={{ sm: "2px", md: "16px" }}
+          color={navbarIcon}
+          variant='transparent-with-icon'
+          rightIcon={
+            document.documentElement.dir ? (
+              ""
+            ) : (
+              <ProfileIcon color={navbarIcon} w='22px' h='22px' me='0px' />
+            )
+          }
+          leftIcon={
+            document.documentElement.dir ? (
+              <ProfileIcon color={navbarIcon} w='22px' h='22px' me='0px' />
+            ) : (
+              ""
+            )
+          }>
+          <Text display={{ sm: "none", md: "flex" }}>LogOut</Text>
+        </Button>
+      </NavLink>
+
+      {/* <NavLink to="/auth/signin">
+        <Button
           ms='0px'
           px='0px'
           me={{ sm: "2px", md: "16px" }}
@@ -109,7 +138,8 @@ export default function HeaderLinks(props) {
           }>
           <Text display={{ sm: "none", md: "flex" }}>Sign In</Text>
         </Button>
-      </NavLink>
+      </NavLink> */}
+
       <SidebarResponsive
         iconColor='gray.500'
         logoText={props.logoText}

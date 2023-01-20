@@ -16,7 +16,7 @@
 
 */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // Chakra imports
 import {
@@ -43,13 +43,18 @@ import GradientBorder from "components/GradientBorder/GradientBorder";
 
 // API Login
 import ApiLogin from "../../api/ApiLogin";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
+
+// Router 
+import { BrowserRouter as Router } from "react-router-dom";
+import Dashboard from "layouts/Admin";
 
 // Login
 function SignIn() {
   const [userEmail, setuserEmail] = useState('');
   const [userPassword, setuserPassword] = useState('');
   const [status, setStatus] = useState('');
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,40 +65,53 @@ function SignIn() {
         return setStatus("Warning")
       } else {
         localStorage.setItem('token', result.token);
-        return setStatus("Success")
+        setStatus("Success");
       }
     } catch (error) {
-      console.info(error)
+      setStatus("Error");
       return notif(error.toString());
     }
   }
 
+  // useEffect for redirect after successful login
+  useEffect(() => {
+    if (status === 'Success') {
+      setTimeout(() => {
+        history.push('/admin/dashboard');
+        toastIdRef.current = toast({
+          title: `Success, login successfully`,
+          status: "success",
+          isClosable: true,
+          duration: 3000
+        });
+      }, 5000);
+      toastIdRef.current = toast({
+        title: `Loading ...`,
+        status: "info",
+        isClosable: true,
+        duration: 5000
+      });
+    }
+  }, [status, history]);
 
   // Notification Toast
   const toast = useToast();
   const toastIdRef = React.useRef()
   function notif() {
     setStatus(status);
-    if (status == "Success") {
-      toastIdRef.current = toast({
-        title: `Success, login successfully`,
-        status: "success",
-        isClosable: true,
-        duration: 1000
-      });
-    } else if (status == "Warning") {
+    if (status == "Warning") {
       toastIdRef.current = toast({
         title: `Failed, invalid email or password..`,
         status: "warning",
         isClosable: true,
-        duration: 1000
+        duration: 3000
       });
-    } else {
+    } else if (status == "Error") {
       toastIdRef.current = toast({
         title: `Sorry, server error..`,
         status: "error",
         isClosable: true,
-        duration: 1000
+        duration: 3000
       });
     }
   }
