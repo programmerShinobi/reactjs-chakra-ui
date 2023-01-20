@@ -81,6 +81,7 @@ function SignIn() {
         toastIdRef.current = toast({
           title: `Success, login successfully`,
           status: "success",
+          variant: "left-accent",
           isClosable: true,
           duration: 3000
         });
@@ -88,6 +89,7 @@ function SignIn() {
       toastIdRef.current = toast({
         title: `Loading ...`,
         status: "info",
+        variant: "left-accent",
         isClosable: true,
         duration: 5000
       });
@@ -103,6 +105,7 @@ function SignIn() {
       toastIdRef.current = toast({
         title: `Failed, invalid email or password..`,
         status: "warning",
+        variant: "left-accent",
         isClosable: true,
         duration: 3000
       });
@@ -110,6 +113,7 @@ function SignIn() {
       toastIdRef.current = toast({
         title: `Sorry, server error..`,
         status: "error",
+        variant: "left-accent",
         isClosable: true,
         duration: 3000
       });
