@@ -362,7 +362,7 @@ function SignUp() {
               fontWeight='bold'
               bgClip='text !important'
               bg='linear-gradient(94.56deg, #FFFFFF 79.99%, #21242F 102.65%)'>
-              THE VISION UI DASHBOARD
+              PROGRAMMER SHINOBI
             </Text>
           </Box>
         </Box>
