@@ -105,7 +105,6 @@ export default function AuthNavbar(props) {
           ms='0px'
           me='0px'
           px='0px'
-          // me={{ sm: "2px", md: "16px" }}
           color={navbarIcon}
           variant='transparent-with-icon'
           leftIcon={
@@ -120,7 +119,6 @@ export default function AuthNavbar(props) {
           ms='0px'
           me='0px'
           px='0px'
-          // me={{ sm: "2px", md: "16px" }}
           color={navbarIcon}
           variant='transparent-with-icon'
           leftIcon={
@@ -130,8 +128,7 @@ export default function AuthNavbar(props) {
         </Button>
       </NavLink>
 
-      {/* <NavLink to='/auth/signin'> */}
-      <NavLink to='#'>
+      <NavLink to='/auth/signin'>
         <Button
           fontSize='sm'
           ms='0px'

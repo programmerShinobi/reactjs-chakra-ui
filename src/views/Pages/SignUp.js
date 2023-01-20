@@ -42,6 +42,7 @@ import GradientBorder from "components/GradientBorder/GradientBorder";
 
 // Assets
 import signUpImage from "assets/img/signUpImage.png";
+import { NavLink } from "react-router-dom";
 
 function SignUp() {
   const titleColor = "white";
@@ -306,14 +307,14 @@ function SignUp() {
                 mt='0px'>
                 <Text color={textColor} fontWeight='medium'>
                   Already have an account?
-                  <Link
+                  <NavLink to="/auth/signin"
                     color={titleColor}
                     as='span'
                     ms='5px'
                     href='#'
                     fontWeight='bold'>
                     Sign In
-                  </Link>
+                  </NavLink>
                 </Text>
               </Flex>
             </Flex>
@@ -340,7 +341,6 @@ function SignUp() {
             h='1300px'
             bgSize='cover'
             bgPosition='50%'
-            // position='absolute'
             display='flex'
             flexDirection='column'
             justifyContent='center'

@@ -43,6 +43,7 @@ import GradientBorder from "components/GradientBorder/GradientBorder";
 
 // API Login
 import ApiLogin from "../../api/ApiLogin";
+import { NavLink } from "react-router-dom";
 
 // Login
 function SignIn() {
@@ -225,9 +226,9 @@ function SignIn() {
               mt='0px'>
               <Text color={textColor} fontWeight='medium'>
                 Don't have an account?
-                <Link color={titleColor} as='span' ms='5px' fontWeight='bold'>
+                <NavLink to='/auth/signup' color={titleColor} as='span' ms='5px' fontWeight='bold'>
                   Sign Up
-                </Link>
+                </NavLink>
               </Text>
             </Flex>
           </Flex>
@@ -254,7 +255,6 @@ function SignIn() {
             h='100%'
             bgSize='cover'
             bgPosition='50%'
-            // position='absolute'
             display='flex'
             flexDirection='column'
             justifyContent='center'

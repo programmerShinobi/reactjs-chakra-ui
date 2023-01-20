@@ -86,8 +86,7 @@ export default function HeaderLinks(props) {
         />
       </InputGroup>
 
-      {/* <NavLink to="/auth/signin"> */}
-      <NavLink to="#">
+      <NavLink to="/auth/signin">
         <Button
           ms='0px'
           px='0px'
