@@ -59,9 +59,11 @@ function SignIn() {
       if (result.message != "Login successfully") {
         return setStatus("Warning")
       } else {
+        localStorage.setItem('token', result.token);
         return setStatus("Success")
       }
     } catch (error) {
+      console.info(error)
       return notif(error.toString());
     }
   }

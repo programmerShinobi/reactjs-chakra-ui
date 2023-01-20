@@ -24,11 +24,44 @@ import AuthLayout from "layouts/Auth.js";
 import AdminLayout from "layouts/Admin.js";
 import RTLLayout from "layouts/RTL.js";
 
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route
+//     {...rest}
+//     render={props =>
+//       localStorage.getItem("token") ? (
+//         <Component {...props} />
+//       ) : (
+//         <Redirect
+//           to='/auth/signin'
+//         // to={{
+//         //   pathname: "/auth/signin",
+//         //   state: { from: props.location }
+//         // }}
+//         />
+//       )
+//     }
+//   />
+// );
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const token = localStorage.getItem('token');
+  return (
+    <Route
+      {...rest}
+      render={props => (
+        token
+          ? <Component {...props} />
+          : <Redirect to='/auth/signin' />
+      )}
+    />
+  );
+}
+
 ReactDOM.render(
   <HashRouter>
     <Switch>
       <Route path={`/auth`} component={AuthLayout} />
-      <Route path={`/admin`} component={AdminLayout} />
+      <PrivateRoute path={`/admin`} component={AdminLayout} />
       <Route path={`/rtl`} component={RTLLayout} />
       <Redirect from={`/`} to='/admin/dashboard' />
 
