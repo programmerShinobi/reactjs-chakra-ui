@@ -7,45 +7,21 @@ import UsersChild from './UsersChild';
 const UsersParent = () => {
 
     const [Users, setUsers] = useState([]);
-    // const [error, setError] = useState(null);
-    // const [isLoading, setIsLoading] = useState(true);
-    // const [status, setStatus] = useState('');
+    const [status, setStatus] = useState('');
 
     useEffect(() => {
         ApiGetUsers.getUsers()
             .then((data) => {
                 if (!data.results) {
-                    // setIsLoading(false);
-                    // throw new Error("Bad Gateway API Users")
+                    throw new Error("Bad Gateway endpoint API")
                 }
-                // Users = data.results;
+                setStatus("Success");
                 setUsers(data.results);
-                // console.info(data.results)
-                // setIsLoading(false);
             })
             .catch((err) => {
-                // setStatus(err.message.toString());
-                setError(err);
-                // setIsLoading(false);
+                setStatus(err.toString());
             });
     }, []);
-
-    Users.map((user) => {
-        console.info(user.userFullName)
-    })
-
-    // console.info(Users.userFullName);
-
-    // if (isLoading) {
-    //     // console.info("Loading")
-    //     // setStatus("Loading");
-    //     return <div>Loading</div>;
-    // }
-
-    // if (error) {
-    //     // setStatus(error.message.toString());
-    //     return <div>Error: {error}</div>;
-    // }
 
     const columns = [
         {
@@ -85,8 +61,6 @@ const UsersParent = () => {
         },
     ];
 
-    // console.info(columns)
-
     const [sortColumn, setSortColumn] = useState(null);
     const [sortDescending, setSortDescending] = useState(true);
     const handleSort = (clickedColumn) => {
@@ -101,14 +75,11 @@ const UsersParent = () => {
     const handleSearch = (searchTerm) => {
         setUsers(prevUsers => prevUsers.filter(Users.map((user) => user.userFullName.toLowerCase().includes(searchTerm.toLowerCase()))));
     }
-    // console.info("handleSearch : " + handleSearch);
 
     let [searchTerm, setSearchTerm] = useState("")
     const filteredUsers = Users.filter(Users =>
         Users.userFullName.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
-    console.info(filteredUsers);
 
     const sortedUsers = filteredUsers.sort((a, b) => {
         if (sortDescending) {
@@ -117,11 +88,9 @@ const UsersParent = () => {
             return a[sortColumn] < b[sortColumn] ? -1 : 1;
         }
     });
-    // console.info("sortedUsers : " + sortedUsers)
 
     return (
         <UsersChild
-            Users={Users}
             columns={columns}
             sortDescending={sortDescending}
             sortColumn={sortColumn}

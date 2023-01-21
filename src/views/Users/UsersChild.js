@@ -19,36 +19,28 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import { SearchIcon } from "@chakra-ui/icons";
 
-const UsersChild = ({ columns, Users, sortedUsers, sortAscending, sortColumn, handleSort, setSearchTerm }) => {
+const UsersChild = ({ columns, sortedUsers, sortAscending, sortColumn, handleSort, setSearchTerm, status }) => {
     // const { columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm } = props;
 
-
     // Notification Toast
-    // const toast = useToast();
-    // const toastIdRef = React.useRef()
-    // if (status == "Loading") {
-    //     toastIdRef.current = toast({
-    //         title: `Failed, invalid email or password..`,
-    //         status: "info",
-    //         isClosable: true,
-    //         // duration: 3000
-    //     });
-    // } else {
-    //     toastIdRef.current = toast({
-    //         title: `Server error..`,
-    //         description: status,
-    //         status: "error",
-    //         isClosable: true,
-    //         // duration: 3000
-    //     });
-    // }
+    const toast = useToast();
+    const toastIdRef = React.useRef()
+    if (status != "Success") {
+        toastIdRef.current = toast({
+            title: `Waiting server..`,
+            description: status,
+            status: "warning",
+            isClosable: true,
+            // duration: 3000
+        });
+    }
     return (
         <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
             {/* Authors Table */}
             <Card overflowX={{ sm: "scroll", xl: "hidden" }} pb='0px'>
                 <CardHeader p='6px 0px 22px 0px'>
                     <Text fontSize='lg' color='#fff' fontWeight='bold'>
-                        Shinobi Table
+                        Users Table
                     </Text>
                 </CardHeader>
                 <InputGroup
@@ -91,14 +83,12 @@ const UsersChild = ({ columns, Users, sortedUsers, sortAscending, sortColumn, ha
                             fixedHeader
                             fixedHeaderScrollHeight="300px"
                             columns={columns}
-                            // data={Users}
                             data={sortedUsers}
                             onSort={handleSort}
                             sortAscending={sortAscending}
                             sortColumn={sortColumn}
                             pagination
                             persistTableHead
-                        // selectableRows
                         />
                     </Table>
                 </CardBody>
