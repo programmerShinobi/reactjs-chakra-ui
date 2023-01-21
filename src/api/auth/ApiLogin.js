@@ -14,7 +14,6 @@ const ApiLogin = {
                 userPassword: userPassword
             }
         }
-
         try {
             let result = await axios(option);
             return result.data;

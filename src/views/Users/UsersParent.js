@@ -13,7 +13,7 @@ const UsersParent = () => {
         ApiGetUsers.getUsers()
             .then((data) => {
                 if (!data.results) {
-                    throw new Error("Bad Gateway endpoint API")
+                    throw new Error("Bad Gateway API")
                 }
                 setStatus("Success");
                 setUsers(data.results);

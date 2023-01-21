@@ -27,7 +27,6 @@ import {
   FormLabel,
   Heading,
   Input,
-  Link,
   Switch,
   Text,
   DarkMode,
@@ -42,12 +41,8 @@ import AuthFooter from "components/Footer/AuthFooter";
 import GradientBorder from "components/GradientBorder/GradientBorder";
 
 // API Login
-import ApiLogin from "../../api/ApiLogin";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
-
-// Router 
-import { BrowserRouter as Router } from "react-router-dom";
-import Dashboard from "layouts/Admin";
+import ApiLogin from "api/auth/ApiLogin";
+import { NavLink, useHistory } from "react-router-dom";
 
 // Login
 function SignIn() {
