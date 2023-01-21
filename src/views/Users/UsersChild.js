@@ -80,7 +80,7 @@ const UsersChild = ({ columns, Users, sortedUsers, sortAscending, sortColumn, ha
                         color='white'
                         fontSize='xs'
                         py='11px'
-                        placeholder='Search Users ...'
+                        placeholder='Search Users (Full Name)...'
                         borderRadius='inherit'
                         onChange={e => setSearchTerm(e.target.value)}
                     />
