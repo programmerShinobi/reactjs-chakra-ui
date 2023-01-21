@@ -7,13 +7,17 @@ import {
     Table,
     Text,
     Input,
-    useToast
+    useToast,
+    InputGroup,
+    InputLeftElement,
+    IconButton
 } from "@chakra-ui/react";
 
 // Custom components
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
+import { SearchIcon } from "@chakra-ui/icons";
 
 const UsersChild = ({ columns, Users, sortedUsers, sortAscending, sortColumn, handleSort, setSearchTerm }) => {
     // const { columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm } = props;
@@ -47,19 +51,40 @@ const UsersChild = ({ columns, Users, sortedUsers, sortAscending, sortColumn, ha
                         Shinobi Table
                     </Text>
                 </CardHeader>
-                <Input
-                    w={{
-                        sm: "128px",
-                        md: "200px",
-                    }}
-                    fontSize='xs'
-                    py='11px'
-                    mb='30px'
-                    color='white'
-                    placeholder='Search Users...'
+                <InputGroup
+                    bg='transparent'
                     borderRadius='15px'
-                    onChange={e => setSearchTerm(e.target.value)}
-                />
+                    w='auto'
+                    mb='30px'
+                    borderColor='rgba(226, 232, 240, 0.3)'>
+                    <InputLeftElement
+                        children={
+                            <IconButton
+                                bg='inherit'
+                                borderRadius='inherit'
+                                _hover='none'
+                                _active={{
+                                    bg: 'inherit',
+                                    transform: 'none',
+                                    borderColor: 'transparent'
+                                }}
+                                _focus={{
+                                    boxShadow: 'none',
+                                }}
+                                icon={
+                                    <SearchIcon color='white' w='15px' h='15px' />
+                                }></IconButton>
+                        }
+                    />
+                    <Input
+                        color='white'
+                        fontSize='xs'
+                        py='11px'
+                        placeholder='Search Users ...'
+                        borderRadius='inherit'
+                        onChange={e => setSearchTerm(e.target.value)}
+                    />
+                </InputGroup>
                 <CardBody mb='30px'>
                     <Table variant='simple' color='#fff' borderTopRadius='15px'>
                         <DataTable
@@ -72,8 +97,8 @@ const UsersChild = ({ columns, Users, sortedUsers, sortAscending, sortColumn, ha
                             sortAscending={sortAscending}
                             sortColumn={sortColumn}
                             pagination
-                            selectableRows
                             persistTableHead
+                        // selectableRows
                         />
                     </Table>
                 </CardBody>

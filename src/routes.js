@@ -37,6 +37,7 @@ import {
   RocketIcon,
   SupportIcon,
 } from "components/Icons/Icons";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 var dashRoutes = [
   {
@@ -116,7 +117,7 @@ var dashRoutes = [
         path: "/signin",
         name: "Sign In",
         rtlName: "shinobi",
-        icon: <DocumentIcon color='inherit' />,
+        icon: <RocketIcon color='inherit' />,
         component: SignIn,
         layout: "/auth",
       },
@@ -124,9 +125,17 @@ var dashRoutes = [
         path: "/signup",
         name: "Sign Up",
         rtlName: "shinobi",
-        icon: <RocketIcon color='inherit' />,
+        icon: <DocumentIcon color='inherit' />,
         // secondaryNavbar: true,
         component: SignUp,
+        layout: "/auth",
+      },
+      {
+        path: "/logout",
+        name: "Log Out",
+        rtlName: "shinobi",
+        icon: <ExternalLinkIcon color='inherit' />,
+        component: SignIn,
         layout: "/auth",
       },
     ],

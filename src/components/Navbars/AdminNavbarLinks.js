@@ -1,5 +1,5 @@
 // Chakra Icons
-import { BellIcon, SearchIcon } from "@chakra-ui/icons";
+import { BellIcon, ExternalLinkIcon, SearchIcon } from "@chakra-ui/icons";
 // Chakra Imports
 import {
   Button,
@@ -49,7 +49,8 @@ export default function HeaderLinks(props) {
       w={{ sm: "100%", md: "auto" }}
       alignItems='center'
       flexDirection='row'>
-      <InputGroup
+
+      {/* <InputGroup
         cursor='pointer'
         bg={inputBg}
         borderRadius='15px'
@@ -85,9 +86,9 @@ export default function HeaderLinks(props) {
           placeholder='Type here...'
           borderRadius='inherit'
         />
-      </InputGroup>
+      </InputGroup> */}
 
-      <NavLink to="/auth/signin">
+      <NavLink to="/auth/logout">
         <Button
           onClick={() => {
             localStorage.removeItem('token');
@@ -101,16 +102,17 @@ export default function HeaderLinks(props) {
             document.documentElement.dir ? (
               ""
             ) : (
-              <ProfileIcon color={navbarIcon} w='22px' h='22px' me='0px' />
+              <ExternalLinkIcon color={navbarIcon} w='22px' h='22px' me='0px' />
             )
           }
           leftIcon={
             document.documentElement.dir ? (
-              <ProfileIcon color={navbarIcon} w='22px' h='22px' me='0px' />
+              <ExternalLinkIcon color={navbarIcon} w='22px' h='22px' me='0px' />
             ) : (
               ""
             )
-          }>
+          }
+        >
           <Text display={{ sm: "none", md: "flex" }}>LogOut</Text>
         </Button>
       </NavLink>
