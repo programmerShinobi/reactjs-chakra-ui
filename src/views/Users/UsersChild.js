@@ -6,7 +6,8 @@ import {
     Flex,
     Table,
     Text,
-    Input
+    Input,
+    useToast
 } from "@chakra-ui/react";
 
 // Custom components
@@ -14,9 +15,29 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 
-const UsersChild = (props) => {
-    const { columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm } = props;
+const UsersChild = ({ columns, Users, sortedUsers, sortAscending, sortColumn, handleSort, setSearchTerm }) => {
+    // const { columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm } = props;
 
+
+    // Notification Toast
+    // const toast = useToast();
+    // const toastIdRef = React.useRef()
+    // if (status == "Loading") {
+    //     toastIdRef.current = toast({
+    //         title: `Failed, invalid email or password..`,
+    //         status: "info",
+    //         isClosable: true,
+    //         // duration: 3000
+    //     });
+    // } else {
+    //     toastIdRef.current = toast({
+    //         title: `Server error..`,
+    //         description: status,
+    //         status: "error",
+    //         isClosable: true,
+    //         // duration: 3000
+    //     });
+    // }
     return (
         <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
             {/* Authors Table */}
@@ -45,6 +66,7 @@ const UsersChild = (props) => {
                             fixedHeader
                             fixedHeaderScrollHeight="300px"
                             columns={columns}
+                            // data={Users}
                             data={sortedUsers}
                             onSort={handleSort}
                             sortAscending={sortAscending}

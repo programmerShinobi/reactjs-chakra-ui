@@ -110,10 +110,10 @@ function Profile() {
 									color='#fff'
 									fontWeight='bold'
 									ms={{ sm: '8px', md: '0px' }}>
-									Mark Johnson
+									Shinobi
 								</Text>
 								<Text fontSize={{ sm: 'sm', md: 'md' }} color='gray.400'>
-									mark@simmmple.com
+									programmer@shinobi.com
 								</Text>
 							</Flex>
 						</Flex>
@@ -182,7 +182,7 @@ function Profile() {
 							Welcome back!
 						</Text>
 						<Text color='#fff' fontSize='sm' mb='auto'>
-							Nice to see you, Mark Johnson!
+							Nice to see you, Shinobi!
 						</Text>
 						<Button alignSelf='flex-start' variant='no-hover' bg='transparent' p='0px'>
 							<Text
@@ -218,7 +218,7 @@ function Profile() {
 								Car Informations
 							</Text>
 							<Text fontSize='sm' color='gray.400'>
-								Hello, Mark Johnson! Your Car is ready.
+								Hello, Shinobi! Your Car is ready.
 							</Text>
 						</Flex>
 					</CardHeader>
@@ -360,7 +360,7 @@ function Profile() {
 					<CardBody px='5px'>
 						<Flex direction='column'>
 							<Text fontSize='sm' color={'gray.400'} fontWeight='400' mb='15px'>
-								Hi, I’m Mark Johnson, Decisions: If you can’t decide, the answer is no. If two equally
+								Hi, I’m Shinobi, Decisions: If you can’t decide, the answer is no. If two equally
 								difficult paths, choose the one more painful in the short term (pain avoidance is
 								creating an illusion of equality).
 							</Text>
@@ -370,7 +370,7 @@ function Profile() {
 									Full Name:{' '}
 								</Text>
 								<Text fontSize='sm' color='#fff' fontWeight='400'>
-									Mark Johnson
+									Shinobi
 								</Text>
 							</Flex>
 							<Flex align='center' mb='18px'>

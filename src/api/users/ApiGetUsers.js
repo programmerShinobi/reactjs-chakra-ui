@@ -12,7 +12,7 @@ const ApiGetUsers = {
         }
         try {
             let result = await axios(option);
-            return result
+            return result.data
         } catch (error) {
             return error.toString();
         }

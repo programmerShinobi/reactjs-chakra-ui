@@ -1,31 +1,51 @@
 import React, { useState, useEffect } from 'react';
-import UsersChild from './UsersChild';
 
 // API Login
 import ApiGetUsers from 'api/users/ApiGetUsers';
+import UsersChild from './UsersChild';
 
 const UsersParent = () => {
+
     const [Users, setUsers] = useState([]);
-    const [error, setError] = useState(null);
+    // const [error, setError] = useState(null);
+    // const [isLoading, setIsLoading] = useState(true);
+    // const [status, setStatus] = useState('');
 
     useEffect(() => {
         ApiGetUsers.getUsers()
-            .then((result) => {
-                if (!result.data.results) {
-                    throw new Error("Bad Gateway API Users")
+            .then((data) => {
+                if (!data.results) {
+                    // setIsLoading(false);
+                    // throw new Error("Bad Gateway API Users")
                 }
-                // setUsers(result.data.results);
-                console.info(result.data.results);
+                // Users = data.results;
+                setUsers(data.results);
+                // console.info(data.results)
+                // setIsLoading(false);
             })
             .catch((err) => {
+                // setStatus(err.message.toString());
                 setError(err);
+                // setIsLoading(false);
             });
     }, []);
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
+    Users.map((user) => {
+        console.info(user.userFullName)
+    })
 
+    // console.info(Users.userFullName);
+
+    // if (isLoading) {
+    //     // console.info("Loading")
+    //     // setStatus("Loading");
+    //     return <div>Loading</div>;
+    // }
+
+    // if (error) {
+    //     // setStatus(error.message.toString());
+    //     return <div>Error: {error}</div>;
+    // }
 
     const columns = [
         {
@@ -65,43 +85,51 @@ const UsersParent = () => {
         },
     ];
 
+    // console.info(columns)
+
     const [sortColumn, setSortColumn] = useState(null);
-    const [sortAscending, setSortAscending] = useState(true);
+    const [sortDescending, setSortDescending] = useState(true);
     const handleSort = (clickedColumn) => {
         if (sortColumn !== clickedColumn) {
             setSortColumn(clickedColumn);
-            setSortAscending(true);
+            setSortDescending(true);
         } else {
-            setSortAscending(!sortAscending);
+            setSortDescending(!sortDescending);
         }
     };
 
     const handleSearch = (searchTerm) => {
-        setUsers(prevUsers => prevUsers.filter(Users => Users.userFullName.toLowerCase().includes(searchTerm.toLowerCase())));
+        setUsers(prevUsers => prevUsers.filter(Users.map((user) => user.userFullName.toLowerCase().includes(searchTerm.toLowerCase()))));
     }
+    // console.info("handleSearch : " + handleSearch);
 
     let [searchTerm, setSearchTerm] = useState("")
     const filteredUsers = Users.filter(Users =>
-        Users.data.userFullName.toLowerCase().includes(searchTerm.toLowerCase())
+        Users.userFullName.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    console.info(filteredUsers);
+
     const sortedUsers = filteredUsers.sort((a, b) => {
-        if (sortAscending) {
-            return a[sortColumn] > b[sortColumn] ? 1 : -1;
+        if (sortDescending) {
+            return a[sortColumn] > b[sortColumn] ? -1 : 1;
         } else {
-            return a[sortColumn] < b[sortColumn] ? 1 : -1;
+            return a[sortColumn] < b[sortColumn] ? -1 : 1;
         }
     });
+    // console.info("sortedUsers : " + sortedUsers)
 
     return (
         <UsersChild
+            Users={Users}
             columns={columns}
-            sortAscending={sortAscending}
+            sortDescending={sortDescending}
             sortColumn={sortColumn}
             handleSort={handleSort}
             handleSearch={handleSearch}
             sortedUsers={sortedUsers}
             setSearchTerm={setSearchTerm}
+            status={status}
         />
     );
 }
