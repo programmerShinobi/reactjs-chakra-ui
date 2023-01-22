@@ -32,7 +32,9 @@ import {
   Text,
   Icon,
   DarkMode,
-  useToast
+  useToast,
+  FormErrorMessage,
+  FormHelperText
 } from "@chakra-ui/react";
 
 // Icons
@@ -48,35 +50,23 @@ import { NavLink, useHistory } from "react-router-dom";
 // API Register
 import ApiRegister from "api/auth/ApiRegister";
 
-// Validasi form
-import { useForm } from "react-hook-form";
-import * as Yup from 'yup'
 
 // Register
 function SignUp() {
   const [userFullName, setuserFullName] = useState('');
   const [userEmail, setuserEmail] = useState('');
   const [userPassword, setuserPassword] = useState('');
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleInputChangeFullName = (e) => setuserFullName(e.target.value);
+  const handleInputChangeEmail = (e) => setuserEmail(e.target.value);
+  const handleInputChangePassword = (e) => setuserPassword(e.target.value);
+  const handleClickShowPassword = () => setShowPassword(!showPassword)
+  const isErrorFullName = userFullName === ''
+  const isErrorEmail = userEmail === ''
+  const isErrorPassword = userPassword === ''
+
   const history = useHistory();
-
-  // const { register, handleSubmitValidation, errors } = useForm({
-  //   validationSchema
-  // });
-
-  // const validationSchema = Yup.object().shape({
-  //   name: Yup.string()
-  //     .required('Name is required'),
-  //   email: Yup.string()
-  //     .email('Invalid email')
-  //     .required('Email is required'),
-  //   password: Yup.string()
-  //     .min(8, 'Password must be at least 8 characters')
-  //     .required('Password is required'),
-  // });
-
-  // const onSubmitted = (data) => {
-  //   console.log('Form data:', data);
-  // };
 
   // Notification Toast
   const toast = useToast();
@@ -99,7 +89,6 @@ function SignUp() {
             duration: 3000
           });
         }, [history]);
-        // handleSubmitValidation(data);
       } else {
         toastIdRef.current = toast({
           title: `Failed, check again name/email/password`,
@@ -107,7 +96,6 @@ function SignUp() {
           isClosable: true,
           duration: 3000
         });
-        // handleSubmitValidation(data);
       }
     } catch (error) {
       let errorName = error.name.toString();
@@ -122,9 +110,7 @@ function SignUp() {
         isClosable: true,
         duration: 3000
       });
-      // handleSubmitValidation(data);
     }
-    // handleSubmitValidation(data);
   }
 
   const titleColor = "white";
@@ -270,74 +256,83 @@ function SignUp() {
                 or
               </Text>
               <form onSubmit={handleSubmit}>
-                <FormLabel
-                  color={titleColor}
-                  ms='4px'
-                  fontSize='sm'
-                  fontWeight='normal'>
-                  Name
-                </FormLabel>
-                <GradientBorder
-                  mb='24px'
-                  h='50px'
-                  w={{ base: "100%", lg: "fit-content" }}
-                  borderRadius='20px'>
-                  <Input
-                    value={userFullName}
-                    onChange={e => setuserFullName(e.target.value)}
+                <FormControl isInvalid={isErrorFullName}>
+                  <FormLabel
                     color={titleColor}
-                    bg={{
-                      base: "rgb(19,21,54)",
-                    }}
-                    border='transparent'
-                    borderRadius='20px'
+                    ms='4px'
                     fontSize='sm'
-                    size='lg'
-                    w={{ base: "100%", md: "346px" }}
-                    maxW='100%'
-                    h='46px'
-                    type='text'
-                    placeholder='Your name'
-                    isRequired
-                  // name="name"
-                  // ref={register}
-                  />
-                </GradientBorder>
-                {/* {errors.name && <p>{errors.name.message}</p>} */}
-                <FormLabel
-                  color={titleColor}
-                  ms='4px'
-                  fontSize='sm'
-                  fontWeight='normal'>
-                  Email
-                </FormLabel>
-                <GradientBorder
-                  mb='24px'
-                  h='50px'
-                  w={{ base: "100%", lg: "fit-content" }}
-                  borderRadius='20px'>
-                  <Input
-                    value={userEmail}
-                    onChange={e => setuserEmail(e.target.value)}
+                    fontWeight='normal'>
+                    Name
+                  </FormLabel>
+                  <GradientBorder
+                    h='50px'
+                    w={{ base: "100%", lg: "fit-content" }}
+                    borderRadius='20px'>
+                    <Input
+                      value={userFullName}
+                      onChange={handleInputChangeFullName}
+                      color={titleColor}
+                      bg={{
+                        base: "rgb(19,21,54)",
+                      }}
+                      border='transparent'
+                      borderRadius='20px'
+                      fontSize='sm'
+                      size='lg'
+                      w={{ base: "100%", md: "346px" }}
+                      maxW='100%'
+                      h='46px'
+                      type='text'
+                      placeholder='Your name'
+                    />
+                  </GradientBorder>
+                  {!isErrorFullName ? (
+                    <FormHelperText mb='24px'>
+                      Enter the name you'd like.
+                    </FormHelperText>
+                  ) : (
+                    <FormErrorMessage mb='24px'>Name is required.</FormErrorMessage>
+                  )}
+                </FormControl>
+                <FormControl isInvalid={isErrorEmail}>
+                  <FormLabel
                     color={titleColor}
-                    bg={{
-                      base: "rgb(19,21,54)",
-                    }}
-                    border='transparent'
-                    borderRadius='20px'
+                    ms='4px'
                     fontSize='sm'
-                    size='lg'
-                    w={{ base: "100%", md: "346px" }}
-                    maxW='100%'
-                    h='46px'
-                    type='email'
-                    placeholder='Your email address'
-                    isRequired
-                  // name="email"
-                  // ref={register}
-                  />
-                </GradientBorder>
-                {/* {errors.email && <p>{errors.email.message}</p>} */}
+                    fontWeight='normal'>
+                    Email
+                  </FormLabel>
+                  <GradientBorder
+                    h='50px'
+                    w={{ base: "100%", lg: "fit-content" }}
+                    borderRadius='20px'>
+                    <Input
+                      type='email'
+                      value={userEmail}
+                      onChange={handleInputChangeEmail}
+                      color={titleColor}
+                      bg={{
+                        base: "rgb(19,21,54)",
+                      }}
+                      border='transparent'
+                      borderRadius='20px'
+                      fontSize='sm'
+                      size='lg'
+                      w={{ base: "100%", md: "346px" }}
+                      maxW='100%'
+                      h='46px'
+                      placeholder='Your email address'
+                    />
+                  </GradientBorder>
+                  {!isErrorEmail ? (
+                    <FormHelperText mb='24px'>
+                      Enter the email you'd like.
+                    </FormHelperText>
+                  ) : (
+                    <FormErrorMessage mb='24px'>Email is required.</FormErrorMessage>
+                  )}
+                </FormControl>
+
                 <FormLabel
                   color={titleColor}
                   ms='4px'
