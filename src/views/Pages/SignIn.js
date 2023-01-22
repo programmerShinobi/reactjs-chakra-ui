@@ -217,7 +217,7 @@ function SignIn() {
                       placeholder='Your password'
                       isRequired
                     />
-                    <InputRightElement height='3rem' width='4rem'>
+                    <InputRightElement height='3rem' width='5rem'>
                       <Button h='1.75rem' size='sm' onClick={handleClickShowPassword}>
                         {showPassword ? 'Hide' : 'Show'}
                       </Button>
