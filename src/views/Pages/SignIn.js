@@ -32,7 +32,9 @@ import {
   DarkMode,
   useToast,
   FormHelperText,
-  FormErrorMessage
+  FormErrorMessage,
+  InputGroup,
+  InputRightElement
 } from "@chakra-ui/react";
 
 // Assets
@@ -50,12 +52,13 @@ import { NavLink, useHistory } from "react-router-dom";
 function SignIn() {
   const [userEmail, setuserEmail] = useState('');
   const [userPassword, setuserPassword] = useState('');
+  const [showPassword, setShowPassword] = React.useState(false)
   const [status, setStatus] = useState('');
   const history = useHistory();
 
   const handleInputChangeEmail = (e) => setuserEmail(e.target.value);
   const handleInputChangePassword = (e) => setuserPassword(e.target.value);
-
+  const handleClickShowPassword = () => setShowPassword(!showPassword)
   const isErrorEmail = userEmail === ''
   const isErrorPassword = userPassword === ''
 
@@ -197,20 +200,27 @@ function SignIn() {
                 <GradientBorder
                   w={{ base: "100%", lg: "fit-content" }}
                   borderRadius='20px'>
-                  <Input
-                    value={userPassword}
-                    onChange={handleInputChangePassword}
-                    color='white'
-                    bg='rgb(19,21,54)'
-                    border='transparent'
-                    borderRadius='20px'
-                    fontSize='sm'
-                    size='lg'
-                    w={{ base: "100%", md: "346px" }}
-                    maxW='100%'
-                    type='password'
-                    placeholder='Your password'
-                  />
+                  <InputGroup size='md'>
+                    <Input
+                      value={userPassword}
+                      onChange={handleInputChangePassword}
+                      color='white'
+                      bg='rgb(19,21,54)'
+                      border='transparent'
+                      borderRadius='20px'
+                      fontSize='sm'
+                      size='lg'
+                      w={{ base: "100%", md: "346px" }}
+                      maxW='100%'
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder='Your password'
+                    />
+                    <InputRightElement height='3rem' width='4rem'>
+                      <Button h='1.75rem' size='sm' onClick={handleClickShowPassword}>
+                        {showPassword ? 'Hide' : 'Show'}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </GradientBorder>
                 {!isErrorPassword ? (
                   <FormHelperText mb='24px'>
@@ -309,7 +319,7 @@ function SignIn() {
           </Box>
         </Box>
       </Flex>
-    </Flex>
+    </Flex >
   );
 }
 
