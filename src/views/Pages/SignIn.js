@@ -30,7 +30,9 @@ import {
   Switch,
   Text,
   DarkMode,
-  useToast
+  useToast,
+  FormHelperText,
+  FormErrorMessage
 } from "@chakra-ui/react";
 
 // Assets
@@ -50,6 +52,12 @@ function SignIn() {
   const [userPassword, setuserPassword] = useState('');
   const [status, setStatus] = useState('');
   const history = useHistory();
+
+  const handleInputChangeEmail = (e) => setuserEmail(e.target.value);
+  const handleInputChangePassword = (e) => setuserPassword(e.target.value);
+
+  const isErrorEmail = userEmail === ''
+  const isErrorPassword = userPassword === ''
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -143,7 +151,7 @@ function SignIn() {
                 fontSize='14px'>
                 Enter your email and password to sign in
               </Text>
-              <FormControl>
+              <FormControl isInvalid={isErrorEmail}>
                 <FormLabel
                   ms='4px'
                   fontSize='sm'
@@ -152,12 +160,12 @@ function SignIn() {
                   Email
                 </FormLabel>
                 <GradientBorder
-                  mb='24px'
                   w={{ base: "100%", lg: "fit-content" }}
                   borderRadius='20px'>
                   <Input
+                    type='email'
                     value={userEmail}
-                    onChange={e => setuserEmail(e.target.value)}
+                    onChange={handleInputChangeEmail}
                     color='white'
                     bg='rgb(19,21,54)'
                     border='transparent'
@@ -170,8 +178,15 @@ function SignIn() {
                     placeholder='Your email adress'
                   />
                 </GradientBorder>
+                {!isErrorEmail ? (
+                  <FormHelperText mb='24px'>
+                    Enter the email you'd like.
+                  </FormHelperText>
+                ) : (
+                  <FormErrorMessage mb='24px'>Email is required.</FormErrorMessage>
+                )}
               </FormControl>
-              <FormControl>
+              <FormControl isInvalid={isErrorPassword}>
                 <FormLabel
                   ms='4px'
                   fontSize='sm'
@@ -180,12 +195,11 @@ function SignIn() {
                   Password
                 </FormLabel>
                 <GradientBorder
-                  mb='24px'
                   w={{ base: "100%", lg: "fit-content" }}
                   borderRadius='20px'>
                   <Input
                     value={userPassword}
-                    onChange={e => setuserPassword(e.target.value)}
+                    onChange={handleInputChangePassword}
                     color='white'
                     bg='rgb(19,21,54)'
                     border='transparent'
@@ -198,6 +212,13 @@ function SignIn() {
                     placeholder='Your password'
                   />
                 </GradientBorder>
+                {!isErrorPassword ? (
+                  <FormHelperText mb='24px'>
+                    Enter the password you'd like.
+                  </FormHelperText>
+                ) : (
+                  <FormErrorMessage mb='24px'>Password is required.</FormErrorMessage>
+                )}
               </FormControl>
               <FormControl display='flex' alignItems='center'>
                 <DarkMode>
@@ -213,7 +234,6 @@ function SignIn() {
                 </FormLabel>
               </FormControl>
               <Button
-                // onClick={() => setShowToast(true)}
                 onClick={notif}
                 variant='brand'
                 fontSize='10px'
