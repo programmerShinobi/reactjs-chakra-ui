@@ -37,6 +37,7 @@ import {
   RocketIcon,
   SupportIcon,
 } from "components/Icons/Icons";
+// import { FiLogOut } from 'react/icons/fi';
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 var dashRoutes = [
@@ -131,8 +132,8 @@ var dashRoutes = [
         layout: "/auth",
       },
       {
-        path: "/logout",
-        name: "Log Out",
+        path: "/signout",
+        name: "Sign Out",
         rtlName: "shinobi",
         icon: <ExternalLinkIcon color='inherit' />,
         component: SignIn,

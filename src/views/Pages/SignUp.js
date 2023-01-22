@@ -40,7 +40,7 @@ import {
 } from "@chakra-ui/react";
 
 // Icons
-import { FaApple, FaFacebook, FaGoogle } from "react-icons/fa";
+import { FaApple, FaFacebook, FaGoogle, HiHome } from "react-icons/fa";
 // Custom Components
 import AuthFooter from "components/Footer/AuthFooter";
 import GradientBorder from "components/GradientBorder/GradientBorder";

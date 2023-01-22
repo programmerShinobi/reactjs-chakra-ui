@@ -20,6 +20,7 @@ import avatar2 from "assets/img/avatars/avatar2.png";
 import avatar3 from "assets/img/avatars/avatar3.png";
 // Custom Icons
 import { ProfileIcon, SettingsIcon } from "components/Icons/Icons";
+import { FiLogOut } from 'react-icons/fi';
 // Custom Components
 import { ItemContent } from "components/Menu/ItemContent";
 import { SidebarResponsive } from "components/Sidebar/Sidebar";
@@ -88,7 +89,7 @@ export default function HeaderLinks(props) {
         />
       </InputGroup> */}
 
-      <NavLink to="/auth/logout">
+      <NavLink to="/auth/signout">
         <Button
           onClick={() => {
             localStorage.removeItem('token');
@@ -113,7 +114,7 @@ export default function HeaderLinks(props) {
             )
           }
         >
-          <Text display={{ sm: "none", md: "flex" }}>LogOut</Text>
+          <Text display={{ sm: "none", md: "flex" }}>Sign Out</Text>
         </Button>
       </NavLink>
 

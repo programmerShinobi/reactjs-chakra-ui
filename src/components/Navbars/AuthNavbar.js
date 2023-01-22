@@ -33,6 +33,8 @@ import {
   PersonIcon,
   RocketIcon,
 } from "components/Icons/Icons";
+import { FiLogIn } from 'react-icons/fi';
+import { MdAppRegistration } from 'react-icons/md';
 import { SidebarResponsive } from "components/Sidebar/Sidebar";
 import PropTypes from "prop-types";
 import React from "react";
@@ -125,7 +127,7 @@ export default function AuthNavbar(props) {
           color={navbarIcon}
           variant='transparent-with-icon'
           leftIcon={
-            <DocumentIcon color={navbarIcon} w='12px' h='12px' me='0px' />
+            <MdAppRegistration color={navbarIcon} w='12px' h='12px' me='0px' />
           }>
           <Text>Sign Up</Text>
         </Button>
@@ -140,7 +142,8 @@ export default function AuthNavbar(props) {
           color={navbarIcon}
           variant='transparent-with-icon'
           leftIcon={
-            <RocketIcon color={navbarIcon} w='12px' h='12px' me='0px' />
+            <FiLogIn color={navbarIcon} w='12px' h='12px' me='0px' />
+            // <RocketIcon color={navbarIcon} w='12px' h='12px' me='0px' />
           }>
           <Text>Sign In</Text>
         </Button>
