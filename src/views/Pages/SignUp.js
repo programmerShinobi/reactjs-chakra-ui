@@ -74,7 +74,7 @@ function SignUp() {
   //     .required('Password is required'),
   // });
 
-  // const onSubmited = (data) => {
+  // const onSubmitted = (data) => {
   //   console.log('Form data:', data);
   // };
 
@@ -90,21 +90,16 @@ function SignUp() {
 
       if (result.savedUser.message == "Success" && result.savedUserPassword.message == "Success") {
         // useEffect for redirect after successful login
-        // useEffect(() => {
-        //   setStatus = "Success"
-        //   if (status == "Success") {
-        history.push('/auth/signin');
-        toastIdRef.current = toast({
-          title: `Success, register successfully`,
-          status: "success",
-          isClosable: true,
-          duration: 3000
-        });
-
+        useEffect(() => {
+          history.push('/auth/signin');
+          toastIdRef.current = toast({
+            title: `Success, register successfully`,
+            status: "success",
+            isClosable: true,
+            duration: 3000
+          });
+        }, [history]);
         // handleSubmitValidation(data);
-
-        // }
-        // }, [status, history]);
       } else {
         toastIdRef.current = toast({
           title: `Failed, check again name/email/password`,
@@ -117,7 +112,7 @@ function SignUp() {
     } catch (error) {
       let errorName = error.name.toString();
       if (errorName == 'TypeError') {
-        errorName = 'Name/Email/Password is required';
+        errorName = 'Failed, check password must be strong enough';
       } else {
         errorName = 'Failed, waiting server'
       }
@@ -282,7 +277,6 @@ function SignUp() {
                   fontWeight='normal'>
                   Name
                 </FormLabel>
-
                 <GradientBorder
                   mb='24px'
                   h='50px'
@@ -304,6 +298,7 @@ function SignUp() {
                     h='46px'
                     type='text'
                     placeholder='Your name'
+                    isRequired
                   // name="name"
                   // ref={register}
                   />
@@ -337,6 +332,7 @@ function SignUp() {
                     h='46px'
                     type='email'
                     placeholder='Your email address'
+                    isRequired
                   // name="email"
                   // ref={register}
                   />
@@ -370,6 +366,7 @@ function SignUp() {
                     h='46px'
                     type='password'
                     placeholder='Your password'
+                    isRequired
                   // name="password"
                   // ref={register}
                   />
@@ -379,7 +376,6 @@ function SignUp() {
                   <DarkMode>
                     <Switch id='remember-login' colorScheme='brand' me='10px' />
                   </DarkMode>
-
                   <FormLabel
                     color={titleColor}
                     htmlFor='remember-login'
