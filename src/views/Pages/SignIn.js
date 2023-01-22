@@ -179,6 +179,7 @@ function SignIn() {
                     maxW='100%'
                     h='46px'
                     placeholder='Your email adress'
+                    isRequired
                   />
                 </GradientBorder>
                 {!isErrorEmail ? (
@@ -214,6 +215,7 @@ function SignIn() {
                       maxW='100%'
                       type={showPassword ? 'text' : 'password'}
                       placeholder='Your password'
+                      isRequired
                     />
                     <InputRightElement height='3rem' width='4rem'>
                       <Button h='1.75rem' size='sm' onClick={handleClickShowPassword}>
