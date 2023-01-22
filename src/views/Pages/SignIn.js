@@ -52,7 +52,7 @@ import { NavLink, useHistory } from "react-router-dom";
 function SignIn() {
   const [userEmail, setuserEmail] = useState('');
   const [userPassword, setuserPassword] = useState('');
-  const [showPassword, setShowPassword] = React.useState(false)
+  const [showPassword, setShowPassword] = React.useState(false);
   const [status, setStatus] = useState('');
   const history = useHistory();
 
