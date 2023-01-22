@@ -115,9 +115,14 @@ function SignUp() {
         // handleSubmitValidation(data);
       }
     } catch (error) {
+      let errorName = error.name.toString();
+      if (errorName == 'TypeError') {
+        errorName = 'Name/Email/Password is required';
+      } else {
+        errorName = 'Failed, waiting server'
+      }
       toastIdRef.current = toast({
-        title: `Failed, ${error.name}`,
-        description: error.message,
+        title: errorName,
         status: "error",
         isClosable: true,
         duration: 3000
