@@ -59,10 +59,6 @@ function SignUp() {
   const [userPassword, setuserPassword] = useState('');
   const history = useHistory();
 
-  // Notification Toast
-  const toast = useToast();
-  const toastIdRef = React.useRef();
-
   // const { register, handleSubmitValidation, errors } = useForm({
   //   validationSchema
   // });
@@ -82,6 +78,10 @@ function SignUp() {
   //   console.log('Form data:', data);
   // };
 
+  // Notification Toast
+  const toast = useToast();
+  const toastIdRef = React.useRef();
+
   const handleSubmit = async (data) => {
     data.preventDefault();
 
@@ -93,22 +93,14 @@ function SignUp() {
         // useEffect(() => {
         //   setStatus = "Success"
         //   if (status == "Success") {
-
-        setTimeout(() => {
-          history.push('/auth/signin');
-          toastIdRef.current = toast({
-            title: `Success, register successfully`,
-            status: "success",
-            isClosable: true,
-            duration: 3000
-          });
-        }, 5000);
+        history.push('/auth/signin');
         toastIdRef.current = toast({
-          title: `Loading ...`,
-          status: "info",
+          title: `Success, register successfully`,
+          status: "success",
           isClosable: true,
           duration: 3000
         });
+
         // handleSubmitValidation(data);
 
         // }
