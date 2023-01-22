@@ -71,21 +71,14 @@ function SignIn() {
   // useEffect for redirect after successful login
   useEffect(() => {
     if (status === 'Success') {
-      setTimeout(() => {
-        history.push('/admin/dashboard');
-        toastIdRef.current = toast({
-          title: `Success, login successfully`,
-          status: "success",
-          isClosable: true,
-          duration: 3000
-        });
-      }, 5000);
+      history.push('/admin/dashboard');
       toastIdRef.current = toast({
-        title: `Loading ...`,
-        status: "info",
+        title: `Success, login successfully`,
+        status: "success",
         isClosable: true,
-        duration: 5000
+        duration: 3000
       });
+
     }
   }, [status, history]);
 

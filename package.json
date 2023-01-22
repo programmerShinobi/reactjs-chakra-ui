@@ -29,6 +29,7 @@
     "react-data-table-component": "^7.5.3",
     "react-dom": "17.0.2",
     "react-github-btn": "^1.2.1",
+    "react-hook-form": "^7.42.1",
     "react-icons": "^4.2.0",
     "react-jvectormap": "0.0.16",
     "react-leaflet-semicircle": "^3.0.3",
@@ -39,7 +40,8 @@
     "socket.io": "^4.5.4",
     "stylis": "^4.0.10",
     "stylis-plugin-rtl": "^2.1.0",
-    "toastify-js": "^1.12.0"
+    "toastify-js": "^1.12.0",
+    "yup": "^0.32.11"
   },
   "resolutions": {
     "react-error-overlay": "6.0.9"

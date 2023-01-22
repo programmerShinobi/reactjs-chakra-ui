@@ -16,7 +16,7 @@
 
 */
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Chakra imports
 import {
@@ -32,6 +32,7 @@ import {
   Text,
   Icon,
   DarkMode,
+  useToast
 } from "@chakra-ui/react";
 
 // Icons
@@ -42,12 +43,100 @@ import GradientBorder from "components/GradientBorder/GradientBorder";
 
 // Assets
 import signUpImage from "assets/img/signUpImage.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
+// API Register
+import ApiRegister from "api/auth/ApiRegister";
+
+// Validasi form
+import { useForm } from "react-hook-form";
+import * as Yup from 'yup'
+
+// Register
 function SignUp() {
+  const [userFullName, setuserFullName] = useState('');
+  const [userEmail, setuserEmail] = useState('');
+  const [userPassword, setuserPassword] = useState('');
+  const history = useHistory();
+
+  // Notification Toast
+  const toast = useToast();
+  const toastIdRef = React.useRef();
+
+  // const { register, handleSubmitValidation, errors } = useForm({
+  //   validationSchema
+  // });
+
+  // const validationSchema = Yup.object().shape({
+  //   name: Yup.string()
+  //     .required('Name is required'),
+  //   email: Yup.string()
+  //     .email('Invalid email')
+  //     .required('Email is required'),
+  //   password: Yup.string()
+  //     .min(8, 'Password must be at least 8 characters')
+  //     .required('Password is required'),
+  // });
+
+  // const onSubmited = (data) => {
+  //   console.log('Form data:', data);
+  // };
+
+  const handleSubmit = async (data) => {
+    data.preventDefault();
+
+    try {
+      const result = await ApiRegister.register(userFullName, userEmail, userPassword)
+
+      if (result.savedUser.message == "Success" && result.savedUserPassword.message == "Success") {
+        // useEffect for redirect after successful login
+        // useEffect(() => {
+        //   setStatus = "Success"
+        //   if (status == "Success") {
+
+        setTimeout(() => {
+          history.push('/auth/signin');
+          toastIdRef.current = toast({
+            title: `Success, register successfully`,
+            status: "success",
+            isClosable: true,
+            duration: 3000
+          });
+        }, 5000);
+        toastIdRef.current = toast({
+          title: `Loading ...`,
+          status: "info",
+          isClosable: true,
+          duration: 3000
+        });
+        // handleSubmitValidation(data);
+
+        // }
+        // }, [status, history]);
+      } else {
+        toastIdRef.current = toast({
+          title: `Failed, check again name/email/password`,
+          status: "warning",
+          isClosable: true,
+          duration: 3000
+        });
+        // handleSubmitValidation(data);
+      }
+    } catch (error) {
+      toastIdRef.current = toast({
+        title: `Failed, ${error.name}`,
+        description: error.message,
+        status: "error",
+        isClosable: true,
+        duration: 3000
+      });
+      // handleSubmitValidation(data);
+    }
+    // handleSubmitValidation(data);
+  }
+
   const titleColor = "white";
   const textColor = "gray.400";
-
   return (
     <Flex position='relative' overflow={{ lg: "hidden" }}>
       <Flex
@@ -188,7 +277,7 @@ function SignUp() {
                 mb='22px'>
                 or
               </Text>
-              <FormControl>
+              <form onSubmit={handleSubmit}>
                 <FormLabel
                   color={titleColor}
                   ms='4px'
@@ -203,6 +292,8 @@ function SignUp() {
                   w={{ base: "100%", lg: "fit-content" }}
                   borderRadius='20px'>
                   <Input
+                    value={userFullName}
+                    onChange={e => setuserFullName(e.target.value)}
                     color={titleColor}
                     bg={{
                       base: "rgb(19,21,54)",
@@ -216,8 +307,11 @@ function SignUp() {
                     h='46px'
                     type='text'
                     placeholder='Your name'
+                  // name="name"
+                  // ref={register}
                   />
                 </GradientBorder>
+                {/* {errors.name && <p>{errors.name.message}</p>} */}
                 <FormLabel
                   color={titleColor}
                   ms='4px'
@@ -231,6 +325,8 @@ function SignUp() {
                   w={{ base: "100%", lg: "fit-content" }}
                   borderRadius='20px'>
                   <Input
+                    value={userEmail}
+                    onChange={e => setuserEmail(e.target.value)}
                     color={titleColor}
                     bg={{
                       base: "rgb(19,21,54)",
@@ -244,8 +340,11 @@ function SignUp() {
                     h='46px'
                     type='email'
                     placeholder='Your email address'
+                  // name="email"
+                  // ref={register}
                   />
                 </GradientBorder>
+                {/* {errors.email && <p>{errors.email.message}</p>} */}
                 <FormLabel
                   color={titleColor}
                   ms='4px'
@@ -259,6 +358,8 @@ function SignUp() {
                   w={{ base: "100%", lg: "fit-content" }}
                   borderRadius='20px'>
                   <Input
+                    value={userPassword}
+                    onChange={e => setuserPassword(e.target.value)}
                     color={titleColor}
                     bg={{
                       base: "rgb(19,21,54)",
@@ -272,8 +373,11 @@ function SignUp() {
                     h='46px'
                     type='password'
                     placeholder='Your password'
+                  // name="password"
+                  // ref={register}
                   />
                 </GradientBorder>
+                {/* {errors.password && <p>{errors.password.message}</p>} */}
                 <FormControl display='flex' alignItems='center' mb='24px'>
                   <DarkMode>
                     <Switch id='remember-login' colorScheme='brand' me='10px' />
@@ -298,7 +402,7 @@ function SignUp() {
                   mt='20px'>
                   SIGN UP
                 </Button>
-              </FormControl>
+              </form>
               <Flex
                 flexDirection='column'
                 justifyContent='center'
