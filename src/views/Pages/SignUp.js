@@ -34,7 +34,9 @@ import {
   DarkMode,
   useToast,
   FormErrorMessage,
-  FormHelperText
+  FormHelperText,
+  InputRightElement,
+  InputGroup
 } from "@chakra-ui/react";
 
 // Icons
@@ -284,6 +286,7 @@ function SignUp() {
                       h='46px'
                       type='text'
                       placeholder='Your name'
+                      isRequired
                     />
                   </GradientBorder>
                   {!isErrorFullName ? (
@@ -322,6 +325,7 @@ function SignUp() {
                       maxW='100%'
                       h='46px'
                       placeholder='Your email address'
+                      isRequired
                     />
                   </GradientBorder>
                   {!isErrorEmail ? (
@@ -332,41 +336,52 @@ function SignUp() {
                     <FormErrorMessage mb='24px'>Email is required.</FormErrorMessage>
                   )}
                 </FormControl>
-
-                <FormLabel
-                  color={titleColor}
-                  ms='4px'
-                  fontSize='sm'
-                  fontWeight='normal'>
-                  Password
-                </FormLabel>
-                <GradientBorder
-                  mb='24px'
-                  h='50px'
-                  w={{ base: "100%", lg: "fit-content" }}
-                  borderRadius='20px'>
-                  <Input
-                    value={userPassword}
-                    onChange={e => setuserPassword(e.target.value)}
+                <FormControl isInvalid={isErrorPassword}>
+                  <FormLabel
                     color={titleColor}
-                    bg={{
-                      base: "rgb(19,21,54)",
-                    }}
-                    border='transparent'
-                    borderRadius='20px'
+                    ms='4px'
                     fontSize='sm'
-                    size='lg'
-                    w={{ base: "100%", md: "346px" }}
-                    maxW='100%'
-                    h='46px'
-                    type='password'
-                    placeholder='Your password'
-                    isRequired
-                  // name="password"
-                  // ref={register}
-                  />
-                </GradientBorder>
-                {/* {errors.password && <p>{errors.password.message}</p>} */}
+                    fontWeight='normal'>
+                    Password
+                  </FormLabel>
+                  <GradientBorder
+                    h='50px'
+                    w={{ base: "100%", lg: "fit-content" }}
+                    borderRadius='20px'>
+                    <InputGroup size='md'>
+                      <Input
+                        value={userPassword}
+                        onChange={e => setuserPassword(e.target.value)}
+                        color={titleColor}
+                        bg={{
+                          base: "rgb(19,21,54)",
+                        }}
+                        border='transparent'
+                        borderRadius='20px'
+                        fontSize='sm'
+                        size='lg'
+                        w={{ base: "100%", md: "346px" }}
+                        maxW='100%'
+                        h='46px'
+                        type={showPassword ? 'text' : 'password'}
+                        placeholder='Your password'
+                        isRequired
+                      />
+                      <InputRightElement height='3rem' width='5rem'>
+                        <Button h='1.75rem' size='sm' onClick={handleClickShowPassword}>
+                          {showPassword ? 'Hide' : 'Show'}
+                        </Button>
+                      </InputRightElement>
+                    </InputGroup>
+                  </GradientBorder>
+                  {!isErrorPassword ? (
+                    <FormHelperText mb='24px'>
+                      Enter the password you'd like.
+                    </FormHelperText>
+                  ) : (
+                    <FormErrorMessage mb='24px'>Password is required.</FormErrorMessage>
+                  )}
+                </FormControl>
                 <FormControl display='flex' alignItems='center' mb='24px'>
                   <DarkMode>
                     <Switch id='remember-login' colorScheme='brand' me='10px' />
