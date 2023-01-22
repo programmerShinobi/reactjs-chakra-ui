@@ -98,7 +98,7 @@ export default function Configurator(props) {
               </Box>
               <Box>
                 <Box>
-                  <Link
+                  {/* <Link
                     href='https://www.creative-tim.com/product/vision-ui-dashboard-chakra'
                     w='100%'
                     mb='16px'>
@@ -112,7 +112,7 @@ export default function Configurator(props) {
                       px='30px'>
                       Free Download
                     </Button>
-                  </Link>
+                  </Link> */}
                   <Link
                     href='https://demos.creative-tim.com/docs-vision-ui-dashboard-chakra/'
                     w='100%'>
