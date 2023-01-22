@@ -351,7 +351,7 @@ function SignUp() {
                     <InputGroup size='md'>
                       <Input
                         value={userPassword}
-                        onChange={e => setuserPassword(e.target.value)}
+                        onChange={handleInputChangePassword}
                         color={titleColor}
                         bg={{
                           base: "rgb(19,21,54)",
