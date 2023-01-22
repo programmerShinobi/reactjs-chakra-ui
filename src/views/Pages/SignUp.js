@@ -82,18 +82,16 @@ function SignUp() {
 
       if (result.savedUser.message == "Success" && result.savedUserPassword.message == "Success") {
         // useEffect for redirect after successful login
-        useEffect(() => {
-          history.push('/auth/signin');
-          toastIdRef.current = toast({
-            title: `Success, register successfully`,
-            status: "success",
-            isClosable: true,
-            duration: 3000
-          });
-        }, [history]);
+        history.push('/auth/signin');
+        toastIdRef.current = toast({
+          title: `Success, register successfully`,
+          status: "success",
+          isClosable: true,
+          duration: 3000
+        });
       } else {
         toastIdRef.current = toast({
-          title: `Failed, check again name/email/password`,
+          title: `Failed, email already exists `,
           status: "warning",
           isClosable: true,
           duration: 3000
