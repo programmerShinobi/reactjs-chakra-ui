@@ -23,25 +23,10 @@ import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import AuthLayout from "layouts/Auth.js";
 import AdminLayout from "layouts/Admin.js";
 import RTLLayout from "layouts/RTL.js";
+/* import react redux untuk mengaktifkan redux yang telah dibuat */
+import { Provider } from 'react-redux';
+import store from './Redux/Store';
 
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route
-//     {...rest}
-//     render={props =>
-//       localStorage.getItem("token") ? (
-//         <Component {...props} />
-//       ) : (
-//         <Redirect
-//           to='/auth/signin'
-//         // to={{
-//         //   pathname: "/auth/signin",
-//         //   state: { from: props.location }
-//         // }}
-//         />
-//       )
-//     }
-//   />
-// );
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.getItem('token');
@@ -60,11 +45,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 ReactDOM.render(
   <HashRouter>
     <Switch>
-      <Route path={`/auth`} component={AuthLayout} />
-      <PrivateRoute path={`/admin`} component={AdminLayout} />
-      <Route path={`/rtl`} component={RTLLayout} />
+      <Provider store={store}>
+        <Route path={`/auth`} component={AuthLayout} />
+        <PrivateRoute path={`/admin`} component={AdminLayout} />
+        <Route path={`/rtl`} component={RTLLayout} />
+      </Provider>
       <Redirect from={`/`} to='/admin/dashboard' />
-
     </Switch>
   </HashRouter>,
   document.getElementById("root")

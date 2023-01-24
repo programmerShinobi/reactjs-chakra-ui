@@ -25,7 +25,7 @@ import Profile from "views/Dashboard/Profile.js";
 import SignIn from "views/Pages/SignIn.js";
 import SignUp from "views/Pages/SignUp.js";
 import Employees from "views/Employees/Employees";
-import UsersParent from "views/Users/UsersParent";
+import UsersParent from "views/Users2/UsersParent";
 // import EmployeeParent from "latihan-component/ParentChildEmployee/EmployeeParent";
 
 import {

@@ -21,9 +21,6 @@ const ApiRegister = {
         try {
             let result = await axios(option)
 
-            console.info(result.data)
-            // console.info(jsonStringify(result));
-
             return result.data;
 
         } catch (error) {

@@ -19,7 +19,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import { SearchIcon } from "@chakra-ui/icons";
 
-const UsersChild = ({ columns, sortedUsers, sortAscending, sortColumn, handleSort, setSearchTerm, status }) => {
+const UsersChild = ({ columns, sortedUsers, sortAscending, sortColumn, handleSort, setSearchTerm }) => {
     // const { columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm } = props;
 
     // Notification Toast
