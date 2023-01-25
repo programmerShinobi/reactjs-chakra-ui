@@ -49,8 +49,8 @@ ReactDOM.render(
         <Route path={`/auth`} component={AuthLayout} />
         <PrivateRoute path={`/admin`} component={AdminLayout} />
         <Route path={`/rtl`} component={RTLLayout} />
+        <Redirect from={`/`} to='/admin/dashboard' />
       </Provider>
-      <Redirect from={`/`} to='/admin/dashboard' />
     </Switch>
   </HashRouter>,
   document.getElementById("root")
