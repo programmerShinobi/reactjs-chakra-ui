@@ -22,18 +22,6 @@ import { SearchIcon } from "@chakra-ui/icons";
 const UsersChild = ({ columns, sortedUsers, sortAscending, sortColumn, handleSort, setSearchTerm }) => {
     // const { columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm } = props;
 
-    // Notification Toast
-    const toast = useToast();
-    const toastIdRef = React.useRef()
-    // if (status != "Success") {
-    //     toastIdRef.current = toast({
-    //         title: `Waiting server..`,
-    //         description: status,
-    //         status: "warning",
-    //         isClosable: true,
-    //         // duration: 3000
-    //     });
-    // }
     return (
         <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
             {/* Authors Table */}

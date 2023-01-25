@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../../Redux/Actions/reducerAction';
 import UsersChild from './UsersChild';
+import { Button, Flex } from '@chakra-ui/react';
 
 const UsersParent = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -11,7 +12,6 @@ const UsersParent = () => {
     const [error, setError] = useState(null);
     const users = useSelector(state => state.userReducers.users);
     const dispatch = useDispatch();
-    // console.info(users.results);
 
     useEffect(() => {
         setIsLoading(true);
@@ -57,11 +57,6 @@ const UsersParent = () => {
             sortable: true,
         },
         {
-            name: 'Type',
-            selector: 'userType',
-            sortable: true,
-        },
-        {
             name: 'Company',
             selector: 'userCompanyName',
             sortable: true,
@@ -77,11 +72,59 @@ const UsersParent = () => {
             sortable: true,
         },
         {
-            name: 'Date',
-            selector: 'userModifiedDate',
-            sortable: true,
+            name: 'Actions',
+            cell: (row) => (
+                <Flex justifyItems="center">
+                    {/* <Button onClick={() => handleAdd(row)}>Add</Button> */}
+                    <Button
+                        size='xs'
+                        bg='transparent'
+                        borderRadius='15px'
+                        w='auto'
+                        mb='30px'
+                        borderColor='rgba(226, 232, 240, 0.3)'
+                        onClick={() => handleDetail(row.id)}>Detail</Button>
+                    <Button
+                        size='xs'
+                        bg='transparent'
+                        borderRadius='15px'
+                        w='auto'
+                        mb='30px'
+                        borderColor='rgba(226, 232, 240, 0.3)'
+                        onClick={() => handleEdit(row.id)}>Edit</Button>
+                    <Button
+                        size='xs'
+                        bg='transparent'
+                        borderRadius='15px'
+                        w='auto'
+                        mb='30px'
+                        borderColor='rgba(226, 232, 240, 0.3)'
+                        onClick={() => handleDelete(row.id)}>Delete</Button>
+                </Flex>
+            ),
         },
     ];
+
+    const handleDetail = (data) => {
+        // Update the selectedData state
+        setSelectedData(data);
+    }
+
+    const handleAdd = (data) => {
+        // Dispatch addData action
+        dispatch(addData(data));
+    }
+
+    const handleEdit = (id) => {
+        // Dispatch editData action
+        dispatch(editData(id, data));
+    }
+
+    const handleDelete = (id) => {
+        // Dispatch deleteData action
+        dispatch(deleteData(id));
+    }
+
 
     const filteredUsers = dataUsers.filter(user =>
         user.userFullName.toLowerCase().includes(searchTerm.toLowerCase())
