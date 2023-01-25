@@ -11,6 +11,7 @@ const UsersParent = () => {
     const [error, setError] = useState(null);
     const users = useSelector(state => state.userReducers.users);
     const dispatch = useDispatch();
+    // console.info(users.results);
 
     useEffect(() => {
         setIsLoading(true);
@@ -29,7 +30,7 @@ const UsersParent = () => {
     if (error) {
         return <div>Error: {error.message}</div>;
     }
-    console.info(users.results);
+
     const dataUsers = users.results
     const handleSort = (clickedColumn) => {
         if (sortColumn !== clickedColumn) {
