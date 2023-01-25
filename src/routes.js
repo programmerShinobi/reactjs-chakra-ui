@@ -26,6 +26,8 @@ import SignIn from "views/Pages/SignIn.js";
 import SignUp from "views/Pages/SignUp.js";
 import Employees from "views/Employees/Employees";
 import UsersParent from "views/Users2/UsersParent";
+import AddUser from "views/Users2/AddUser";
+import EditUser from "views/Users2/EditUser";
 // import EmployeeParent from "latihan-component/ParentChildEmployee/EmployeeParent";
 
 import {
@@ -41,6 +43,22 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 var dashRoutes = [
+  {
+    path: `/users/editUser/:id`,
+    name: "Edit User",
+    rtlName: "shinobi",
+    icon: <StatsIcon color='inherit' />,
+    component: EditUser,
+    layout: "/admin",
+  },
+  {
+    path: "/users/addUser",
+    name: "Add New User",
+    rtlName: "shinobi",
+    icon: <StatsIcon color='inherit' />,
+    component: AddUser,
+    layout: "/admin",
+  },
   {
     path: "/users",
     name: "Users",

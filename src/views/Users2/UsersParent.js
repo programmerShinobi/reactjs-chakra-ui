@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../../Redux/Actions/reducerAction';
+import { deleteUsers, getAllUsers } from '../../Redux/Actions/reducerAction';
 import UsersChild from './UsersChild';
 import { Button, Flex } from '@chakra-ui/react';
+import EditUser from './EditUser';
+import editUser from './EditUser';
 
 const UsersParent = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -12,6 +15,7 @@ const UsersParent = () => {
     const [error, setError] = useState(null);
     const users = useSelector(state => state.userReducers.users);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         setIsLoading(true);
@@ -74,8 +78,7 @@ const UsersParent = () => {
         {
             name: 'Actions',
             cell: (row) => (
-                <Flex justifyItems="center">
-                    {/* <Button onClick={() => handleAdd(row)}>Add</Button> */}
+                <Flex alignSelf='center'>
                     <Button
                         size='xs'
                         bg='transparent'
@@ -91,7 +94,7 @@ const UsersParent = () => {
                         w='auto'
                         mb='30px'
                         borderColor='rgba(226, 232, 240, 0.3)'
-                        onClick={() => handleEdit(row.id)}>Edit</Button>
+                        onClick={() => handleEdit(row.userId)}>Edit</Button>
                     <Button
                         size='xs'
                         bg='transparent'
@@ -99,30 +102,49 @@ const UsersParent = () => {
                         w='auto'
                         mb='30px'
                         borderColor='rgba(226, 232, 240, 0.3)'
-                        onClick={() => handleDelete(row.id)}>Delete</Button>
+                        onClick={() => handleDelete(row.userId)}>Delete</Button>
                 </Flex>
             ),
         },
     ];
+
+    // const editdata = (id) => {
+    //     history.push('admin/users/editUser', { state: { id } });
+    // }
 
     const handleDetail = (data) => {
         // Update the selectedData state
         setSelectedData(data);
     }
 
-    const handleAdd = (data) => {
-        // Dispatch addData action
-        dispatch(addData(data));
-    }
-
+    const params = useParams()
+    // const navigate = useNavigate()
     const handleEdit = (id) => {
-        // Dispatch editData action
-        dispatch(editData(id, data));
+        // navigate('/edituser', { state: { id } })
+        params = id
+        history.push({
+            pathname: '/users/editUser/' + params,
+        });
+
+        // history.push(`/users/editUser/ ${id}`);
+        // history.push({
+        //     pathname: '/users/editUser/',
+        //     state: { params.id }
+        // });
+
+        // history.push({
+        //     pathname: '/users/editUser/',
+        //     state: { id: params.id }
+        // });
+
+        console.info("handle edit :" + id);
     }
 
     const handleDelete = (id) => {
         // Dispatch deleteData action
-        dispatch(deleteData(id));
+        dispatch(deleteUsers(id));
+        history.push('/admin/users');
+        console.info(id);
     }
 
 

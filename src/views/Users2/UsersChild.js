@@ -10,7 +10,8 @@ import {
     useToast,
     InputGroup,
     InputLeftElement,
-    IconButton
+    IconButton,
+    Button
 } from "@chakra-ui/react";
 
 // Custom components
@@ -18,9 +19,17 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import { SearchIcon } from "@chakra-ui/icons";
+import { Link } from "react-router-dom";
 
 const UsersChild = ({ columns, sortedUsers, sortAscending, sortColumn, handleSort, setSearchTerm }) => {
     // const { columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm } = props;
+
+    // const handleAdd = (user) => {
+    //     // Add the new user to the existing data
+    //     const newData = [...data, user];
+    //     // Update the data state
+    //     setData(newData);
+    // }
 
     return (
         <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
@@ -60,11 +69,22 @@ const UsersChild = ({ columns, sortedUsers, sortAscending, sortColumn, handleSor
                         color='white'
                         fontSize='xs'
                         py='11px'
-                        placeholder='Search Users (Full Name)...'
+                        placeholder='Search Full Name...'
                         borderRadius='inherit'
                         onChange={e => setSearchTerm(e.target.value)}
                     />
                 </InputGroup>
+                <Link to='/admin/users/addUser'>
+                    <Button
+                        color='inherit'
+                        size='xs'
+                        bg='white'
+                        borderRadius='15px'
+                        w='auto'
+                        mb='30px'
+                        borderColor='rgba(226, 232, 240, 0.3)'
+                        onClick={() => dispatch(addUser(newUser))}>Add New User</Button>
+                </Link>
                 <CardBody mb='30px'>
                     <Table variant='simple' color='#fff' borderTopRadius='15px'>
                         <DataTable

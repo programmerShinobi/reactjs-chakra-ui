@@ -30,6 +30,19 @@ export const getAllUsers = () => async (dispatch) => {
     }
 }
 
+export const getOneUsers = (id) => async (dispatch) => {
+    try {
+        const res = await ApiService.get(id);
+
+        dispatch({
+            type: ActionTypes.GET_USERS,
+            payload: res.data
+        })
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 export const updateUsers = (id, data) => async (dispatch) => {
     try {
         const res = await ApiService.update(id, data);
