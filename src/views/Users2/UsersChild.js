@@ -24,13 +24,6 @@ import { Link } from "react-router-dom";
 const UsersChild = ({ columns, sortedUsers, sortAscending, sortColumn, handleSort, setSearchTerm }) => {
     // const { columns, sortAscending, sortColumn, handleSort, sortedUsers, setSearchTerm } = props;
 
-    // const handleAdd = (user) => {
-    //     // Add the new user to the existing data
-    //     const newData = [...data, user];
-    //     // Update the data state
-    //     setData(newData);
-    // }
-
     return (
         <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
             {/* Authors Table */}

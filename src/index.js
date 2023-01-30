@@ -44,14 +44,14 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
 ReactDOM.render(
   <HashRouter>
-    <Switch>
-      <Provider store={store}>
+    <Provider store={store}>
+      <Switch>
         <Route path={`/auth`} component={AuthLayout} />
         <PrivateRoute path={`/admin`} component={AdminLayout} />
         <Route path={`/rtl`} component={RTLLayout} />
         <Redirect from={`/`} to='/admin/dashboard' />
-      </Provider>
-    </Switch>
+      </Switch>
+    </Provider>
   </HashRouter>,
   document.getElementById("root")
 );

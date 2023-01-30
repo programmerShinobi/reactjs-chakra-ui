@@ -9,8 +9,7 @@ const get = id => {
 }
 
 const create = data => {
-    console.log(data)
-    return axios.post('/createUsersAndAllJoin', data.user);
+    return axios.post('/users/createUsersAndAllJoin', data.user);
 }
 
 const update = (id, data) => {

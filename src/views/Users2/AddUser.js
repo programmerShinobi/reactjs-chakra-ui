@@ -32,24 +32,24 @@ const AddUser = () => {
 
     // digunakan untuk mengelola state dari field input
     const [datausers, setusers] = useState({
-        userFullName: '',
-        userPhoneNumber: '',
-        userEmail: '',
-        userType: '',
-        uspaPasswordhash: '',
-        userCompanyName: '',
+        userFullName: null,
+        userPhoneNumber: null,
+        userEmail: null,
+        userType: null,
+        uspaPasswordhash: null,
+        userCompanyName: null,
         usmeType: "default",
-        usproJobTitle: '',
-        usroRole: '',
-        usproBirth: '',
+        usproJobTitle: null,
+        usroRole: null,
+        usproBirth: null,
         usproAddr: 1,
-        usproGender: '',
-        usproMaritalStatus: '',
-        usproNationalId: 0,
-        usmeMembName: '',
-        ubpoBonusType: '',
-        usmePoints: 0,
-        ubpoTotalPoints: 0,
+        usproGender: null,
+        usproMaritalStatus: null,
+        usproNationalId: null,
+        usmeMembName: null,
+        ubpoBonusType: null,
+        usmePoints: null,
+        ubpoTotalPoints: null,
     })
 
     // menangani event onChange dari field input
@@ -69,16 +69,17 @@ const AddUser = () => {
             })
             .catch(e => {
                 // menampilkan pesan alert dengan error jika terjadi error
-                alert(e)
+                alert(e);
             })
     }
 
     return (
         <Flex direction='column' pt={{ base: "120px", md: "75px" }} mx='auto'>
-            <Grid templateColumns={{ sm: "1fr", lg: "60% 38%" }} w='auto'>
+            {/* <Grid templateColumns={{ sm: "1fr", lg: "60% 38%" }} w='auto'> */}
+            <Grid w='auto'>
                 <Box>
                     <form>
-                        <Card p='16px' mt='24px'>
+                        <Card p='16px' mt='24px' align='center' justify='center'>
                             <CardHeader>
                                 <Flex
                                     justify='space-between'
@@ -118,12 +119,13 @@ const AddUser = () => {
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
-                                            color='white'
+                                            color='grey'
                                             fontSize='xs'
                                             placeholder='Email...'
                                             value={datausers.userEmail}
                                             onChange={evenHandler('userEmail')}
                                             type="email"
+                                            isRequired
                                         />
 
                                     </GradientBorder>
@@ -148,18 +150,19 @@ const AddUser = () => {
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
-                                            color='white'
+                                            color='grey'
                                             fontSize='xs'
                                             placeholder='Password...'
                                             value={datausers.uspaPasswordhash}
                                             onChange={evenHandler('uspaPasswordhash')}
                                             type="password"
+                                            isRequired
                                         />
 
                                     </GradientBorder>
                                 </Flex>
                             </CardBody>
-                            {/* Full Name & Birth Date */}
+                            {/* Full Name & Birth Date & National ID & Phone */}
                             <CardBody>
                                 <Flex
                                     direction={{ sm: "column", md: "row" }}
@@ -180,12 +183,13 @@ const AddUser = () => {
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
-                                            color='white'
+                                            color='grey'
                                             fontSize='xs'
                                             placeholder='Full Name...'
                                             value={datausers.userFullName}
                                             onChange={evenHandler('userFullName')}
                                             type="text"
+                                            isRequired
                                         />
 
                                     </GradientBorder>
@@ -210,45 +214,14 @@ const AddUser = () => {
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
-                                            color='white'
-                                            textColor='white'
+                                            color='grey'
+                                            textcolor='grey'
                                             fontSize='xs'
                                             placeholder='Birth Date...'
                                             value={datausers.usproBirth}
                                             onChange={evenHandler('usproBirth')}
                                             type="date"
-                                        />
-
-                                    </GradientBorder>
-                                </Flex>
-                            </CardBody>
-                            {/* National ID & Phone Number */}
-                            <CardBody>
-                                <Flex
-                                    direction={{ sm: "column", md: "row" }}
-                                    align='center'
-                                    w='100%'
-                                    justify='center'
-                                    py='1rem'>
-                                    <GradientBorder
-                                        // mb={{ sm: "24px", md: "0px" }}
-                                        // me={{ sm: "0px", md: "24px" }}
-                                        w='100%'
-                                        borderRadius='20px'>
-
-                                        <Input
-                                            p='22px'
-                                            bg='rgb(31, 35, 89)'
-                                            border='transparent'
-                                            borderRadius='20px'
-                                            align='center'
-                                            w='100%'
-                                            color='white'
-                                            fontSize='xs'
-                                            placeholder='National ID...'
-                                            value={datausers.usproNationalId}
-                                            onChange={evenHandler('usproNationalId')}
-                                            type="text"
+                                            isRequired
                                         />
 
                                     </GradientBorder>
@@ -273,18 +246,50 @@ const AddUser = () => {
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
-                                            color='white'
+                                            color='grey'
+                                            fontSize='xs'
+                                            placeholder='National ID...'
+                                            value={datausers.usproNationalId}
+                                            onChange={evenHandler('usproNationalId')}
+                                            type="text"
+                                            isRequired
+                                        />
+
+                                    </GradientBorder>
+                                </Flex>
+                                <Flex
+                                    pl='15px'
+                                    direction={{ sm: "column", md: "row" }}
+                                    align='center'
+                                    w='100%'
+                                    justify='center'
+                                    py='1rem'>
+                                    <GradientBorder
+                                        // mb={{ sm: "24px", md: "0px" }}
+                                        // me={{ sm: "0px", md: "24px" }}
+                                        w='100%'
+                                        borderRadius='20px'>
+
+                                        <Input
+                                            p='22px'
+                                            bg='rgb(31, 35, 89)'
+                                            border='transparent'
+                                            borderRadius='20px'
+                                            align='center'
+                                            w='100%'
+                                            color='grey'
                                             fontSize='xs'
                                             placeholder='Phone...'
                                             value={datausers.userPhoneNumber}
                                             onChange={evenHandler('userPhoneNumber')}
                                             type="text"
+                                            isRequired
                                         />
 
                                     </GradientBorder>
                                 </Flex>
                             </CardBody>
-                            {/* Gender & Type & Role */}
+                            {/* Gender & Type & Status & Role */}
                             <CardBody>
                                 <Flex
                                     direction={{ sm: "column", md: "row" }}
@@ -299,7 +304,8 @@ const AddUser = () => {
                                         borderRadius='20px'>
                                         <Select
                                             fontSize='xs'
-                                            bg='white'
+                                            color='grey'
+                                            bg='rgb(31, 35, 89)'
                                             border='transparent'
                                             borderRadius='20px'
                                             align='center'
@@ -307,6 +313,7 @@ const AddUser = () => {
                                             placeholder='Select gender...'
                                             value={datausers.usproGender}
                                             onChange={evenHandler('usproGender')}
+                                            isRequired
                                         >
                                             <option
                                                 value='M'
@@ -331,7 +338,8 @@ const AddUser = () => {
                                         borderRadius='20px'>
                                         <Select
                                             fontSize='xs'
-                                            bg='white'
+                                            color='grey'
+                                            bg='rgb(31, 35, 89)'
                                             border='transparent'
                                             borderRadius='20px'
                                             align='center'
@@ -339,6 +347,7 @@ const AddUser = () => {
                                             placeholder='Select type...'
                                             value={datausers.userType}
                                             onChange={evenHandler('userType')}
+                                            isRequired
                                         >
                                             <option
                                                 value='T'
@@ -366,7 +375,8 @@ const AddUser = () => {
                                         borderRadius='20px'>
                                         <Select
                                             fontSize='xs'
-                                            bg='white'
+                                            color='grey'
+                                            bg='rgb(31, 35, 89)'
                                             border='transparent'
                                             borderRadius='20px'
                                             align='center'
@@ -374,6 +384,7 @@ const AddUser = () => {
                                             placeholder='Select status...'
                                             value={datausers.usproMaritalStatus}
                                             onChange={evenHandler('usproMaritalStatus')}
+                                            isRequired
                                         >
                                             <option
                                                 value='S'
@@ -398,14 +409,16 @@ const AddUser = () => {
                                         borderRadius='20px'>
                                         <Select
                                             fontSize='xs'
-                                            bg='white'
+                                            color='grey'
+                                            bg='rgb(31, 35, 89)'
                                             border='transparent'
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
                                             placeholder=' Select role...'
-                                            value={datausers.usroRole}
+                                            value={parseInt(datausers.usroRole)}
                                             onChange={evenHandler('usroRole')}
+                                            isRequired
                                         >
                                             <option
                                                 value={1}
@@ -423,7 +436,6 @@ const AddUser = () => {
                                                 value={5}
                                             >User</option>
                                         </Select>
-
                                     </GradientBorder>
                                 </Flex>
                             </CardBody>
@@ -448,12 +460,13 @@ const AddUser = () => {
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
-                                            color='white'
+                                            color='grey'
                                             fontSize='xs'
                                             placeholder='Company Name..'
                                             value={datausers.userCompanyName}
                                             onChange={evenHandler('userCompanyName')}
                                             type="text"
+                                            isRequired
                                         />
 
                                     </GradientBorder>
@@ -478,18 +491,19 @@ const AddUser = () => {
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
-                                            color='white'
+                                            color='grey'
                                             fontSize='xs'
                                             placeholder='Job Title..'
                                             value={datausers.usproJobTitle}
                                             onChange={evenHandler('usproJobTitle')}
                                             type="text"
+                                            isRequired
                                         />
 
                                     </GradientBorder>
                                 </Flex>
                             </CardBody>
-                            {/* Member Name &  Bonus Type*/}
+                            {/* Member Name &  Member Points & Bonus type & Bonus Total Points */}
                             <CardBody>
                                 <Flex
                                     direction={{ sm: "column", md: "row" }}
@@ -504,7 +518,8 @@ const AddUser = () => {
                                         borderRadius='20px'>
                                         <Select
                                             fontSize='xs'
-                                            bg='white'
+                                            color='grey'
+                                            bg='rgb(31, 35, 89)'
                                             border='transparent'
                                             borderRadius='20px'
                                             align='center'
@@ -512,6 +527,7 @@ const AddUser = () => {
                                             placeholder='Select member...'
                                             value={datausers.usmeMembName}
                                             onChange={evenHandler('usmeMembName')}
+                                            isRequired
                                         >
                                             <option
                                                 value='SILVER'
@@ -540,30 +556,25 @@ const AddUser = () => {
                                         // me={{ sm: "0px", md: "24px" }}
                                         w='100%'
                                         borderRadius='20px'>
-                                        <Select
-                                            fontSize='xs'
-                                            bg='white'
+                                        <Input
+                                            p='22px'
+                                            bg='rgb(31, 35, 89)'
                                             border='transparent'
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
-                                            placeholder='Select bonus type...'
-                                            value={datausers.ubpoBonusType}
-                                            onChange={evenHandler('ubpoBonusType')}
-                                        >
-                                            <option
-                                                value='R'
-                                            >Rating</option>
-                                            <option
-                                                value='P'
-                                            >Promote</option>
-                                        </Select>
+                                            color='grey'
+                                            fontSize='xs'
+                                            placeholder='Member points...'
+                                            value={parseInt(datausers.usmePoints)}
+                                            onChange={evenHandler('usmePoints')}
+                                            type="number"
+                                            isRequired
+                                        />
                                     </GradientBorder>
                                 </Flex>
-                            </CardBody>
-                            {/* Member Points & Bonus Total Points */}
-                            <CardBody>
                                 <Flex
+                                    pl='15px'
                                     direction={{ sm: "column", md: "row" }}
                                     align='center'
                                     w='100%'
@@ -574,20 +585,26 @@ const AddUser = () => {
                                         // me={{ sm: "0px", md: "24px" }}
                                         w='100%'
                                         borderRadius='20px'>
-                                        <Input
-                                            p='22px'
+                                        <Select
+                                            fontSize='xs'
+                                            color='grey'
                                             bg='rgb(31, 35, 89)'
                                             border='transparent'
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
-                                            color='white'
-                                            fontSize='xs'
-                                            placeholder='Member points...'
-                                            value={datausers.usmePoints}
-                                            onChange={evenHandler('usmePoints')}
-                                            type="number"
-                                        />
+                                            placeholder='Select bonus type...'
+                                            value={datausers.ubpoBonusType}
+                                            onChange={evenHandler('ubpoBonusType')}
+                                            isRequired
+                                        >
+                                            <option
+                                                value='R'
+                                            >Rating</option>
+                                            <option
+                                                value='P'
+                                            >Promote</option>
+                                        </Select>
                                     </GradientBorder>
                                 </Flex>
                                 <Flex
@@ -609,12 +626,13 @@ const AddUser = () => {
                                             borderRadius='20px'
                                             align='center'
                                             w='100%'
-                                            color='white'
+                                            color='grey'
                                             fontSize='xs'
                                             placeholder='Bonus total points...'
-                                            value={datausers.ubpoTotalPoints}
+                                            value={parseInt(datausers.ubpoTotalPoints)}
                                             onChange={evenHandler('ubpoTotalPoints')}
                                             type="number"
+                                            isRequired
                                         />
                                     </GradientBorder>
                                 </Flex>
